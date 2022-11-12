@@ -1,42 +1,57 @@
 import React from "react";
 import styled from "styled-components";
-import { HiCloudDownload } from "react-icons/hi";
-import { SlControlPlay } from "react-icons/sl";
+import { TfiRulerPencil } from "react-icons/tfi";
+import { BsCodeSlash } from "react-icons/bs";
+import { RiUserHeartLine } from "react-icons/ri";
 import Title from "./title";
+import { useScroll } from "./use-scroll";
+import { motion } from "framer-motion";
+import { servicesAnimations } from "./animations";
 
 function Services() {
+  const [element, controls] = useScroll();
+
   const data = [
     {
       type: "Design",
       text: "Their could can widen ten she any. As so we smart those money in. Am wrote up whole so tears sense oh. Absolute required of reserved in offering no. How sense found our those gay again taken the.",
-      icon: <HiCloudDownload color="#7056ff" size={64} />,
+      icon: <TfiRulerPencil color="#7056ff" size={64} />,
     },
     {
       type: "Code",
       text: "Ferrars all spirits his imagine effects amongst neither. It bachelor cheerful of mistaken. Tore has sons put upon wife use bred seen. Its dissimilar invitation ten has discretion unreserved.",
-      icon: <HiCloudDownload color="#7056ff" size={64} />,
+      icon: <BsCodeSlash color="#7056ff" size={64} />,
     },
     {
       type: "UX",
       text: "Ham pretty our people moment put excuse narrow. Spite mirth money six above get going great own. Started now shortly had for assured hearing expense.",
-      icon: <HiCloudDownload color="#7056ff" size={64} />,
+      icon: <RiUserHeartLine color="#7056ff" size={64} />,
     },
   ];
   return (
-    <Section id="services">
+    <Section id="services" ref={element}>
       <Title value="Services" />
       <div className="services">
         {data.map(({ type, text, icon }, index) => {
           return (
-            <div className="services-service">
+            <motion.div
+              variants={servicesAnimations}
+              animate={controls}
+              transition={{
+                delay: 0.03,
+                type: "tween",
+                duration: 0.8,
+              }}
+              className="services-service"
+              key={index}
+            >
               <div className="services-service-icon">{icon}</div>
               <div className="services-service-title">
                 <span>0{index + 1}</span>
                 <h2>{type}</h2>
               </div>
               <p className="services-service-description"> {text}</p>
-              <SlControlPlay className="play" />
-            </div>
+            </motion.div>
           );
         })}
       </div>
@@ -53,6 +68,17 @@ const Section = styled.section`
     height: 100%;
     margin: 10rem 254px 0px 254px;
     gap: 5rem;
+    @media screen and (max-width: 1500px) {
+      outline: 2px solid hotpink;
+      margin-inline: 24px;
+    }
+    @media screen and (max-width: 950px) {
+      gap: 2rem;
+    }
+    @media screen and (max-width: 810px) {
+      grid-template-columns: repeat(1, 1fr);
+      margin-bottom: 24px;
+    }
     &-service {
       padding: 2rem;
       &:nth-of-type(3) {
@@ -84,9 +110,6 @@ const Section = styled.section`
       &-description {
         color: var(--accent-color);
         margin-bottom: 2rem;
-      }
-      .play {
-        color: var(--accent-color);
       }
     }
   }

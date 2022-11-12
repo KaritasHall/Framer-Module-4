@@ -2,8 +2,15 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Lottie from "react-lottie-player";
 import talkBubble from "./assets/talk-bubble.json";
+import { motion } from "framer-motion";
+import { useScroll } from "./use-scroll";
+import {
+  testimonalsSectionAnimation,
+  testimonialsAnimation,
+} from "./animations";
 
 function Testimonials() {
+  const [element, controls] = useScroll();
   const [selected, setSelected] = useState(0);
   const testimonials = [
     {
@@ -25,9 +32,22 @@ function Testimonials() {
         "By so delight of showing neither believe he present. Deal sigh up in shew away when. Pursuit express no or prepare replied. Wholly formed old latter future but way she. Day her likewise smallest expenses judgment building man carriage gay.",
     },
   ];
+
   return (
-    <Section>
-      <div className="container">
+    <Section
+      ref={element}
+      variants={testimonalsSectionAnimation}
+      animate={controls}
+    >
+      <MotionContainer
+        variants={testimonialsAnimation}
+        animate={controls}
+        transition={{
+          delay: 0.2,
+          type: "tween",
+          duration: 0.8,
+        }}
+      >
         <div className="testimonials">
           {testimonials.map(({ designation, name, review }, index) => {
             return (
@@ -42,7 +62,7 @@ function Testimonials() {
                     loop
                     animationData={talkBubble}
                     play
-                    style={{ width: 150, height: 150 }}
+                    style={{ width: 250, height: 250 }}
                   />
                 </div>
                 <div className="title-container">
@@ -68,61 +88,64 @@ function Testimonials() {
             onClick={() => setSelected(2)}
           ></button>
         </div>
-      </div>
+      </MotionContainer>
     </Section>
   );
 }
-
-const Section = styled.section`
-  overflow: hidden;
-  .container {
-    background-color: var(--primary-color);
+const MotionContainer = styled(motion.div)`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding-bottom: 5rem;
+  .testimonials {
     display: flex;
-    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
     justify-content: center;
-    align-items: center;
-    gap: 2rem;
-    padding-bottom: 5rem;
-    .testimonials {
+    width: 30%;
+    .testimonial {
       display: flex;
       gap: 1rem;
-      text-align: center;
-      justify-content: center;
-      width: 30%;
-      .testimonial {
-        display: flex;
-        gap: 1rem;
-        flex-direction: column;
-        align-items: center;
-        height: 360px;
-        .bubble {
-          position: relative;
-        }
-        &.hidden {
-          display: none;
-        }
-        color: white;
-        .designation {
-          color: var(--accent-color);
-        }
+      flex-direction: column;
+      align-items: center;
+      /* height: 360px; */
+      .bubble {
+        position: relative;
       }
-    }
-    .controls {
-      display: flex;
-      gap: 1rem;
-      button {
-        padding: 0.5rem;
-        border-radius: 1rem;
-        background-color: var(--secondary-color);
-        border: 0.1rem solid transparent;
-        cursor: pointer;
+      &.hidden {
+        display: none;
       }
-      .active {
-        background-color: transparent;
-        border-color: var(--secondary-color);
+      color: white;
+      .designation {
+        color: var(--accent-color);
       }
     }
   }
+  .controls {
+    display: flex;
+    gap: 1rem;
+    button {
+      padding: 0.5rem;
+      border-radius: 1rem;
+      background-color: var(--secondary-color);
+      border: 0.1rem solid transparent;
+      cursor: pointer;
+    }
+    .active {
+      background-color: transparent;
+      border-color: var(--secondary-color);
+    }
+  }
+`;
+
+const Section = styled(motion.section)`
+  overflow: hidden;
+  transition: 400ms;
+  transition-delay: 300ms;
+  transition-timing-function: ease-out;
+  padding-top: 64px;
 `;
 
 export default Testimonials;

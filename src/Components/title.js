@@ -18,6 +18,9 @@ const Div = styled.div`
     text-transform: uppercase;
     color: var(--primary-color);
     font-weight: 100;
+    @media screen and (max-width: 1500px) {
+      display: none;
+    }
   }
 `;
 
