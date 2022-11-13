@@ -10,8 +10,12 @@ import {
 } from "./styles";
 
 function Navbar() {
-  const [element, controls] = useScroll();
+  // This is a hook (see hooks folder)
+  const [element, animationControls] = useScroll();
 
+  /* Animation (navAnimation) on the Nav component.
+  The actual animation is in the style.js, but here we have extra
+  properties to tweak the animation*/
   return (
     <Nav
       ref={element}
@@ -19,7 +23,7 @@ function Navbar() {
       initial="hidden"
       whileInView="show"
       transition={{ delay: 0.1 }}
-      animate={controls}
+      animate={animationControls}
     >
       <BrandContainer href="#">
         <Logo src={logo} />

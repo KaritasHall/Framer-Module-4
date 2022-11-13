@@ -15,6 +15,8 @@ import { InformationBlock } from "./information-block";
 
 function HeroSection() {
   return (
+    /* Animation on "Hero". Tween is a type of animation that refers to
+    duration based animations */
     <Section id="hero">
       <Navbar />
       <Hero
@@ -34,6 +36,7 @@ function HeroSection() {
           </SubTitle>
         </Content>
       </Hero>
+      {/* Animation on Info component */}
       <Info
         initial="hidden"
         whileInView="show"

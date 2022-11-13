@@ -4,6 +4,9 @@ import { Bubble, TestimonialContainer, Designation } from "./styles";
 import Lottie from "react-lottie-player";
 import talkBubble from "../../assets/talk-bubble.json";
 
+/* Made a reusable component here since it is used 3 times in the html. 
+Checking if the index of this testimonial matches the index of the selected button (in html) */
+
 function Testimonial({ selected, index, designation, name, review }) {
   return (
     <TestimonialContainer
