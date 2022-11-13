@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 
-function Title({ value }) {
+function Title() {
   return (
     <Div>
-      <h1>{value}</h1>
+      <h1>Services</h1>
     </Div>
   );
 }
