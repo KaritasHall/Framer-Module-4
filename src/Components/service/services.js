@@ -3,7 +3,7 @@ import { TfiRulerPencil } from "react-icons/tfi";
 import { BsCodeSlash } from "react-icons/bs";
 import { RiUserHeartLine } from "react-icons/ri";
 import Title from "./title";
-import { useScroll } from "../use-scroll";
+import { useScroll } from "../../hooks/use-scroll";
 import {
   Section,
   ServiceWrapper,

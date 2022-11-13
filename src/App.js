@@ -1,9 +1,9 @@
 import "./App.css";
 import React from "react";
-import HeroSection from "./Components/hero.js/hero-section";
-import Services from "./Components/service.js/services";
-import Testimonials from "./Components/testimonial";
-import Footer from "./Components/footer";
+import HeroSection from "./components/hero-section/hero-section";
+import Services from "./components/service/services";
+import Testimonials from "./components/testimonials/testimonials";
+import Footer from "./components/footer/footer";
 import { motion } from "framer-motion";
 
 function App() {

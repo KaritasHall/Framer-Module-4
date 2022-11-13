@@ -1,6 +1,6 @@
 import React from "react";
-import { useScroll } from "../use-scroll";
-import logo from "../assets/logo.png";
+import { useScroll } from "../../hooks/use-scroll";
+import logo from "../../assets/logo.png";
 import {
   Nav,
   Logo,

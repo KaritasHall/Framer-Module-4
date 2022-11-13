@@ -29,7 +29,6 @@ export const Description = styled.p`
 export const ServiceWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  align-items: center;
   height: 100%;
   margin: 10rem 254px 0px 254px;
   gap: 5rem;
